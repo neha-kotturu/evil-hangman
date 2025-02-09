@@ -9,10 +9,6 @@ def group_words(words, guess):
         groups[pattern].append(word)
     return groups
 
-#choose the group with the most number of word options
-def choose_largest_group(groups):
-    return max(groups.values(), key=len)
-
 def main():
     #store all words in an array
     with open('dictionary.txt', 'r') as file:
@@ -39,7 +35,7 @@ def main():
         curr_num_guesses += 1
         letters_left.remove(guess)
         groups = group_words(candidates, guessed_letters)
-        candidates = choose_largest_group(groups)
+        candidates = max(groups.values(), key=len)
         
         for key, value in groups.items():
             if value == candidates:
